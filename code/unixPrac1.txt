@@ -1,0 +1,25 @@
+# Author: Leo He <Triopleo@gmail.com>
+# File: unixPrac1.txt
+# Desc: Fasta sequences practical assessed coursework questions 1-5
+# Date: October 2026
+# Working directory: ~/CMEECourseWork/code
+
+#1
+wc -l ../data/fasta/*
+# The two numbered fasta files have count one lower than displayed because the final line does not end in a newline character and was not counted (wc -l counts only newline characters)
+
+#2
+tail -n +2 ../data/fasta/e_coli.fasta
+# The first line header is excluded as it is a description and does not form part of the genomic sequence. Shell interprets <tail -n +2> as printing all lines from <n+1> to the tail-end with n being the number lines to exclude from the start.
+
+#3
+tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | wc -m
+# <tr -d '\n'> removes newlines from the tail input
+
+#4
+tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o ATGC | wc -l
+# <grep> returns trailing newlines to its output hence <wc -l>
+
+#5
+echo "AT/GC ratio: $(echo "(($(echo "$(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n')" | grep -o A | wc -l) + $(echo "$(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n')" | grep -o T | wc -l)) / ($(echo "$(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n')" | grep -o G | wc -l) + $(echo "$(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n')" | grep -o C | wc -l)))" | bc -l)"
+# Pipe cleaned fasta output into grep and arithmetic expansions. <bc -l> for decimal arithmetic
