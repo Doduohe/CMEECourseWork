@@ -6,6 +6,7 @@
 # Arguments: 1-> tab delimited file
 # Date: Oct 2026
 
+# Accept exactly 1 input
 if [[ $# -ne 1 ]]; then
     printf 'Usage: %s input one tab delimited file\n' "$0" >&2
     exit 2
@@ -13,8 +14,11 @@ fi
 
 echo "Creating a comma delimited version of $1 ..."
 
-cat "$1" | tr -s "\t" "," > "$1".csv
+# Create csv and output in results
+filename=$(basename "$1")
+cat "$1" | tr -s "\t" "," > "../results/$filename.csv"
 
 echo "Done!"
 
-exit
+exit 0
+
