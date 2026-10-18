@@ -34,6 +34,7 @@ All code in this repository was written in and tested with Python 3.11.5, R 4.6.
 
 #### Pseudocode summary
 
+```text
 INPUT: observations with record_id, location, genus, species, distance_m, and angle_degrees
 Load in data; check input fields; stop and report an error for invalid input
 For each record: 
@@ -48,6 +49,7 @@ For each record:
         return list of valid records
 Summarise counts for oak species for list of valid records
 OUTPUT: CSV file with each valid record of oak summarised by species; CSV file with all valid records; CSV file with all invalid records with reason for error
+```
 
 ## Data
 
